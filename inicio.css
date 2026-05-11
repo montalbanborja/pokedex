@@ -1,0 +1,226 @@
+/* estilos de la pantalla de inicio */
+
+/* cabecera */
+.home-header {
+  position: sticky; top: 0;
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  z-index: 100; transition: background .25s, border-color .25s;
+}
+.home-header-inner {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 0 28px; height: 64px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
+.home-header-actions { display: flex; align-items: center; gap: 12px; }
+.btn-all {
+  background: var(--text); color: var(--bg); border-radius: 100px; padding: 10px 20px;
+  font-family: 'Unbounded', sans-serif; font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.02em; text-decoration: none;
+  transition: opacity .15s, transform .15s; white-space: nowrap;
+}
+.btn-all:hover { opacity: 0.85; transform: translateY(-1px); }
+
+/* bloque principal */
+.home-main { max-width: var(--max-w); margin: 0 auto; padding: 0 28px 80px; }
+
+/* portada */
+.hero {
+  padding: 60px 0 52px;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; position: relative; overflow: hidden;
+}
+.hero-eyebrow {
+  font-family: 'Unbounded', sans-serif; font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.15em; color: var(--text-sub); text-transform: uppercase; margin-bottom: 16px;
+}
+.hero-title {
+  font-family: 'Unbounded', sans-serif; font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: -0.03em;
+  line-height: 1.1; margin-bottom: 16px;
+}
+.hero-sub { font-size: 1rem; color: var(--text-sub); line-height: 1.65; max-width: 520px; margin-bottom: 32px; }
+.hero-pills { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.pill {
+  display: inline-flex; align-items: center; padding: 10px 22px;
+  border-radius: 100px; font-family: 'Unbounded', sans-serif;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em;
+  text-decoration: none; border: 1.5px solid var(--border2);
+  color: var(--text-sub); background: none; transition: all .18s;
+}
+.pill:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+.hero-balls { position: absolute; inset: 0; pointer-events: none; z-index: -1; }
+.deco-ball { position: absolute; border-radius: 50%; opacity: 0.055; }
+.b1 { width: 420px; height: 420px; top: -120px; right: -100px; background: var(--accent); }
+.b2 { width: 240px; height: 240px; top: 40px; right: 240px; background: var(--blue); }
+.b3 { width: 160px; height: 160px; bottom: -60px; left: 80px; background: #f4c32a; }
+
+/* secciones */
+.section { padding-top: 52px; border-top: 1px solid var(--border); margin-top: 52px; }
+.section-header { margin-bottom: 32px; }
+.section-title {
+  font-family: 'Unbounded', sans-serif; font-weight: 900;
+  font-size: 1.5rem; letter-spacing: -0.02em; margin-bottom: 6px;
+}
+.section-sub { font-size: 0.88rem; color: var(--text-sub); }
+
+/* bloque por generación */
+.gen-block { margin-bottom: 12px; }
+
+/* titulo de cada grupo */
+.gen-block-label {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 0 10px;
+  border-bottom: 1px solid var(--border);
+  cursor: default;
+}
+.gen-roman {
+  font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 0.78rem;
+  background: var(--surface2); border: 1px solid var(--border2);
+  border-radius: 8px; padding: 4px 10px; color: var(--text);
+}
+.gen-region { font-size: 0.8rem; color: var(--text-sub); font-weight: 700; }
+.gen-game-count { margin-left: auto; font-size: 0.7rem; color: var(--text-dim); font-weight: 700; }
+
+/* tarjetas de juegos */
+.games-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 14px;
+  padding: 16px 0 24px;
+}
+
+.game-card {
+  border-radius: 20px; overflow: hidden; cursor: pointer;
+  text-decoration: none; border: 1.5px solid var(--border);
+  background: var(--surface); display: flex; align-items: stretch;
+  transition: transform .18s, border-color .18s, box-shadow .18s;
+  position: relative; min-height: 120px;
+}
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border2);
+}
+
+/* banda lateral */
+.game-card-stripe {
+  width: 5px; flex-shrink: 0;
+  background: var(--stripe-color, #888);
+  transition: width .18s;
+}
+.game-card:hover .game-card-stripe { width: 7px; }
+
+/* zona del logo */
+.game-card-logo-wrap {
+  width: 160px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px 14px;
+  background: var(--logo-bg);
+  position: relative; overflow: hidden;
+}
+.game-card-logo-bg {
+  position: absolute; inset: 0; opacity: 0.12;
+  background: linear-gradient(135deg, var(--c1, #555) 0%, var(--c2, #222) 100%);
+  transition: opacity .2s;
+}
+.game-card:hover .game-card-logo-bg { opacity: 0.22; }
+.game-card-logo {
+  position: relative; z-index: 1;
+  max-width: 138px; max-height: 80px;
+  width: auto; height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+  transition: transform .2s;
+}
+.game-card:hover .game-card-logo { transform: scale(1.06); }
+.game-card-logo-fallback {
+  position: relative; z-index: 1;
+  font-family: 'Unbounded', sans-serif; font-size: 0.72rem; font-weight: 900;
+  color: var(--text); letter-spacing: 0.04em;
+  display: none; align-items: center; justify-content: center; text-align: center;
+}
+
+/* zona de datos */
+.game-card-info {
+  flex: 1; display: flex; flex-direction: column;
+  justify-content: center; gap: 6px;
+  padding: 18px 14px 18px 20px; min-width: 0;
+}
+.game-card-name {
+  font-family: 'Unbounded', sans-serif; font-size: 0.92rem; font-weight: 700;
+  color: var(--text); line-height: 1.3;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.game-card-meta {
+  display: flex; align-items: center; gap: 8px;
+}
+.game-card-platform {
+  font-size: 0.75rem; color: var(--text-sub); font-weight: 600;
+}
+.game-card-year {
+  font-size: 0.68rem; color: var(--text-dim); font-weight: 700;
+}
+
+/* flecha */
+.game-card-arrow {
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 16px 0 4px; flex-shrink: 0;
+}
+.game-card-arrow-inner {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--surface2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; color: var(--text-sub);
+  transition: background .15s, color .15s, transform .15s;
+}
+.game-card:hover .game-card-arrow-inner {
+  background: var(--accent); color: white; transform: translateX(2px);
+}
+
+/* tarjetas por generación */
+.gen-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.gen-card {
+  border-radius: 18px; overflow: hidden; cursor: pointer;
+  text-decoration: none; border: 1.5px solid var(--border);
+  background: var(--surface); display: flex;
+  transition: transform .18s, border-color .18s, box-shadow .18s;
+}
+.gen-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--border2); }
+.gen-card-stripe { width: 5px; flex-shrink: 0; }
+.gen-card-inner { display: flex; align-items: center; gap: 16px; padding: 18px 18px 18px 16px; flex: 1; }
+.gen-card-icon { font-size: 2rem; flex-shrink: 0; width: 44px; text-align: center; }
+.gen-card-info { flex: 1; }
+.gen-card-title { font-family: 'Unbounded', sans-serif; font-size: 0.76rem; font-weight: 700; margin-bottom: 3px; }
+.gen-card-region { font-size: 0.82rem; color: var(--text-sub); }
+.gen-card-count { font-size: 0.68rem; color: var(--text-dim); font-weight: 700; margin-top: 4px; }
+.gen-card-arrow2 {
+  width: 30px; height: 30px; border-radius: 50%; background: var(--surface2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.82rem; color: var(--text-sub); flex-shrink: 0;
+  transition: background .15s, color .15s, transform .15s;
+}
+.gen-card:hover .gen-card-arrow2 { background: var(--accent); color: white; transform: translateX(3px); }
+
+/* ajustes responsive */
+@media (max-width: 768px) {
+  .home-main { padding: 0 16px 60px; }
+  .home-header-inner { padding: 0 16px; }
+  .hero { padding: 40px 0 36px; text-align: left; align-items: flex-start; }
+  .hero-pills { justify-content: flex-start; }
+  .hero-balls { display: none; }
+  .games-row { grid-template-columns: 1fr; gap: 10px; }
+  .gen-cards-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .game-card-logo-wrap { width: 130px; }
+  .game-card-logo { max-width: 112px; max-height: 66px; }
+}
+@media (max-width: 480px) {
+  .gen-cards-grid { grid-template-columns: 1fr; }
+  .btn-all { padding: 9px 14px; font-size: 0.66rem; }
+  .game-card-logo-wrap { width: 90px; }
+}
+
+

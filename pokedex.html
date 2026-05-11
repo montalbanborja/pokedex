@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Redirigiendo…</title>
+  <script>
+    window.location.replace('/pokedex' + window.location.search + window.location.hash);
+  </script>
+</head>
+<body>
+
+  <!-- barra del equipo -->
+  <div class="team-bar" id="teamBar">
+    <div class="team-bar-inner">
+      <div class="team-bar-left">
+        <span class="team-bar-title">MI EQUIPO</span>
+        <span class="team-bar-count" id="teamBarCount">0 / 6</span>
+      </div>
+      <div class="team-bar-slots" id="teamBarSlots"></div>
+      <div class="team-bar-right">
+        <a class="btn-back" href="index.html" title="Volver al inicio">← Inicio</a>
+        <button class="btn-icon" id="themeToggle" title="Cambiar tema">
+          <span class="theme-icon">☀</span>
+        </button>
+        <button class="btn-clear" id="clearTeam">Limpiar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- cabecera -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-ball">
+          <div class="lb-top"></div><div class="lb-band"></div>
+          <div class="lb-bottom"></div><div class="lb-center"></div>
+        </div>
+        <div class="logo-text">
+          <h1>PokéDex</h1>
+          <span class="logo-context" id="logoContext"></span>
+        </div>
+      </div>
+      <div class="header-search">
+        <svg class="search-icon" viewBox="0 0 20 20" fill="none">
+          <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M14 14l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <input class="search-input" type="search" id="searchInput" placeholder="Buscar por nombre o número…" autocomplete="off"/>
+      </div>
+      <div class="header-filters">
+        <button class="btn-filters" id="filtersToggle">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M1 3h13M3 7.5h9M5.5 12h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          Filtros
+          <span class="filters-badge hidden" id="filtersBadge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- panel de filtros -->
+  <div class="filter-panel hidden" id="filterPanel">
+    <div class="filter-panel-inner">
+
+      <div class="filter-group" id="filterGroupType">
+        <div class="filter-group-label">Tipo</div>
+        <div class="filter-chips" id="typeChips"></div>
+      </div>
+
+      <div class="filter-group" id="filterGroupGen">
+        <div class="filter-group-label">Generación</div>
+        <div class="filter-chips" id="genChips">
+          <button class="fchip" data-gen="1">Gen I · Kanto</button>
+          <button class="fchip" data-gen="2">Gen II · Johto</button>
+          <button class="fchip" data-gen="3">Gen III · Hoenn</button>
+          <button class="fchip" data-gen="4">Gen IV · Sinnoh</button>
+          <button class="fchip" data-gen="5">Gen V · Unova</button>
+          <button class="fchip" data-gen="6">Gen VI · Kalos</button>
+          <button class="fchip" data-gen="7">Gen VII · Alola</button>
+          <button class="fchip" data-gen="8">Gen VIII · Galar</button>
+          <button class="fchip" data-gen="9">Gen IX · Paldea</button>
+        </div>
+      </div>
+
+      <div class="filter-group" id="filterGroupEvo">
+        <div class="filter-group-label">Etapa evolutiva</div>
+        <div class="filter-chips" id="evoChips">
+          <button class="fchip" data-evo="1">Primera etapa</button>
+          <button class="fchip" data-evo="2">Segunda etapa</button>
+          <button class="fchip" data-evo="3">Tercera etapa</button>
+          <button class="fchip" data-evo="0">Sin evolución</button>
+        </div>
+      </div>
+
+      <div class="filter-group" id="filterGroupCategory">
+        <div class="filter-group-label">Categoría</div>
+        <div class="filter-chips" id="categoryChips">
+          <button class="fchip" data-cat="normal">No legendario</button>
+          <button class="fchip" data-cat="legendary">Legendario</button>
+          <button class="fchip" data-cat="mythical">Mítico</button>
+          <button class="fchip" data-cat="mega">Mega Evolución</button>
+          <button class="fchip" data-cat="gmax">Gigamax</button>
+        </div>
+      </div>
+
+      <div class="filter-group hidden" id="filterGroupVersion">
+        <div class="filter-group-label">Versión exclusiva</div>
+        <div class="filter-chips" id="versionChips"></div>
+      </div>
+
+      <div class="filter-panel-footer">
+        <button class="btn-reset-filters" id="resetFilters">Limpiar filtros</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- pestañas de generación (modo all o gen) -->
+  <nav class="gen-nav" id="genNav">
+    <div class="gen-nav-inner">
+      <button class="gen-tab active" data-gen="all">Todos</button>
+      <button class="gen-tab" data-gen="1">Gen I <span>Kanto</span></button>
+      <button class="gen-tab" data-gen="2">Gen II <span>Johto</span></button>
+      <button class="gen-tab" data-gen="3">Gen III <span>Hoenn</span></button>
+      <button class="gen-tab" data-gen="4">Gen IV <span>Sinnoh</span></button>
+      <button class="gen-tab" data-gen="5">Gen V <span>Unova</span></button>
+      <button class="gen-tab" data-gen="6">Gen VI <span>Kalos</span></button>
+      <button class="gen-tab" data-gen="7">Gen VII <span>Alola</span></button>
+      <button class="gen-tab" data-gen="8">Gen VIII <span>Galar</span></button>
+      <button class="gen-tab" data-gen="9">Gen IX <span>Paldea</span></button>
+      <button class="gen-tab" data-gen="regional">Regionales</button>
+    </div>
+  </nav>
+
+  <main class="main" id="mainContent">
+    <!-- contexto del juego o generación -->
+    <div class="context-banner hidden" id="contextBanner">
+      <div class="context-banner-inner">
+        <div class="context-banner-info">
+          <span class="context-banner-icon" id="contextIcon">🎮</span>
+          <div>
+            <div class="context-banner-title" id="contextTitle"></div>
+            <div class="context-banner-sub" id="contextSub"></div>
+          </div>
+        </div>
+        <a href="index.html" class="context-banner-change">Cambiar →</a>
+      </div>
+    </div>
+
+    <div class="loader" id="loader">
+      <p id="loaderText">Cargando Pokédex…</p>
+    </div>
+    <div class="no-results hidden" id="noResults">
+      <p>Sin resultados para esos filtros.</p>
+    </div>
+    <div id="genSections"></div>
+  </main>
+
+  <!-- modal de detalles -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+</body>
+</html>
